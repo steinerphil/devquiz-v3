@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class DevQuizControllerTest {
+class QuestionControllerTest {
 
     @Autowired
     private TestRestTemplate testRestTemplate;
