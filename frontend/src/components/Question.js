@@ -29,7 +29,7 @@ function Question({ question, setCount }) {
           <Answer setChosenAnswer={setChosenAnswer} answer={answer} key={answer.id} questionId={question.id} />
         ))}
       </AnswerContainer>
-      <CheckButton onClick={validateAnswer} disabled={disabled} >Check Answer</CheckButton>
+      <CheckButton onClick={validateAnswer} disabled={disabled}>Check Answer</CheckButton>
     </QuestionContainer>
   )
 }
