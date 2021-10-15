@@ -2,6 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { useState } from 'react'
 import NewQuestion from '../components/NewQuestion'
+import { v4 as uuidv4 } from 'uuid';
 
 
 export default function AddQuestion({ saveQuestion }) {
@@ -11,10 +12,12 @@ export default function AddQuestion({ saveQuestion }) {
       {
         answerText: '',
         isCorrect: false,
+        id: uuidv4()
       },
       {
         answerText: '',
         isCorrect: false,
+        id: uuidv4()
       },
     ],
   })
@@ -40,6 +43,7 @@ export default function AddQuestion({ saveQuestion }) {
     newQuestionObject.answers.push({
       answerText: '',
       isCorrect: false,
+      id: uuidv4()
     })
     setQuestions(newQuestionObject)
   }
