@@ -1,17 +1,32 @@
 import * as React from 'react'
 import Answer from './Answer'
 import styled from 'styled-components'
+import {useState} from "react";
 
 function Question({ question }) {
-  return (
+
+    const [chosenAnswer, setChosenAnswer] = useState({});
+
+    function validateAnswer() {
+        console.log(chosenAnswer.isCorrect)
+        if (chosenAnswer.isCorrect) {
+            alert("CORRECT!")
+        } else {
+            const correctAnswer = question.answers.find(answer => answer.isCorrect ? answer : "");
+            alert("WROONG! Correct answer would have been: " + correctAnswer.answerText)
+
+             }
+    }
+
+    return (
     <QuestionContainer>
       <h3>{question.questionText}</h3>
       <AnswerContainer>
         {question.answers.map(answer => (
-          <Answer answer={answer} key={answer.id} questionId={question.id} />
+          <Answer setChosenAnswer={setChosenAnswer} answer={answer} key={answer.id} questionId={question.id} />
         ))}
       </AnswerContainer>
-      <CheckButton>Check Answer</CheckButton>
+      <CheckButton onClick={validateAnswer} >Check Answer</CheckButton>
     </QuestionContainer>
   )
 }
