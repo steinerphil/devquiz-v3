@@ -2,17 +2,19 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { useState } from 'react'
 import NewQuestion from '../components/NewQuestion'
+
+
 export default function AddQuestion({ saveQuestion }) {
   const [question, setQuestions] = useState({
     questionText: '',
     answers: [
       {
         answerText: '',
-        correct: false,
+        isCorrect: false,
       },
       {
         answerText: '',
-        correct: false,
+        isCorrect: false,
       },
     ],
   })
@@ -27,7 +29,7 @@ export default function AddQuestion({ saveQuestion }) {
     const newQuestionObject = { ...question }
 
     for (let i = 0; i < newQuestionObject.answers.length; i++) {
-      newQuestionObject.answers[i].correct = i === index
+      newQuestionObject.answers[i].isCorrect = i === index
     }
 
     setQuestions(newQuestionObject)
@@ -37,7 +39,7 @@ export default function AddQuestion({ saveQuestion }) {
     const newQuestionObject = { ...question }
     newQuestionObject.answers.push({
       answerText: '',
-      correct: false,
+      isCorrect: false,
     })
     setQuestions(newQuestionObject)
   }
