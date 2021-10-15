@@ -3,7 +3,7 @@ import Answer from './Answer'
 import styled from 'styled-components'
 import {useState} from "react";
 
-function Question({ question }) {
+function Question({ question, setCount }) {
 
     const [chosenAnswer, setChosenAnswer] = useState({});
 
@@ -11,6 +11,7 @@ function Question({ question }) {
         console.log(chosenAnswer.isCorrect)
         if (chosenAnswer.isCorrect) {
             alert("CORRECT!")
+            setCount();
         } else {
             const correctAnswer = question.answers.find(answer => answer.isCorrect ? answer : "");
             alert("WROONG! Correct answer would have been: " + correctAnswer.answerText)
