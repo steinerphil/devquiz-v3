@@ -11,7 +11,7 @@ export default function AddQuestion({ saveQuestion }) {
     answers: [
       {
         answerText: '',
-        isCorrect: false,
+        isCorrect: true,
         id: uuidv4()
       },
       {
