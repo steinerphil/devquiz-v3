@@ -1,5 +1,6 @@
 import * as React from 'react'
 import NewQuestionAnswerItem from "./NewQuestionAnswerItem";
+import styled from "styled-components";
 
 export default function NewQuestion({
                                         answers,
@@ -10,7 +11,7 @@ export default function NewQuestion({
                                     }) {
     return (
         <form className="question">
-      <textarea
+      <Textarea
           placeholder="Insert your Question here...."
           onChange={e => {
               handleQuestionTextInput(e)
@@ -29,3 +30,8 @@ export default function NewQuestion({
         </form>
     )
 }
+
+const Textarea = styled.textarea`
+height: 100px;
+  width: 340px;
+`

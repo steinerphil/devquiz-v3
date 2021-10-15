@@ -13,12 +13,13 @@ function Question({ question, setCount }) {
         if (chosenAnswer.isCorrect) {
             alert("CORRECT!")
             setCount();
-            setDisabled(true)
+
         } else {
             const correctAnswer = question.answers.find(answer => answer.isCorrect ? answer : "");
             alert("WROONG! Correct answer would have been: " + correctAnswer.answerText)
 
              }
+        setDisabled(true)
     }
 
     return (

@@ -13,7 +13,6 @@ function Homepage({ questions }) {
         setCount(count + 1)
     }
 
-
   return (
     <QuestionsContainer>
       <Counter questions={questions} count={count}/>
