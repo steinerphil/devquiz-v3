@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-function Answer({setChosenAnswer, answer, questionId }) {
+function Answer({setChosenAnswer, answer, questionId, disabled }) {
 
     function handleRadioButtonClick() {
         setChosenAnswer(answer);
@@ -9,7 +9,7 @@ function Answer({setChosenAnswer, answer, questionId }) {
 
     return (
     <AnswerContainer>
-      <input onChange={handleRadioButtonClick} type="radio" name={questionId} />
+      <input onChange={handleRadioButtonClick} type="radio" name={questionId} disabled={disabled}/>
       <h4>{answer.answerText}</h4>
     </AnswerContainer>
   )

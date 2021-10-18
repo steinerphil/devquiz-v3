@@ -30,7 +30,7 @@ function Question({ question, setCount }) {
       <h3>{question.questionText}</h3>
       <AnswerContainer>
         {question.answers.map(answer => (
-          <Answer setChosenAnswer={setChosenAnswer} answer={answer} key={answer.id} questionId={question.id} />
+          <Answer disabled={disabled} setChosenAnswer={setChosenAnswer} answer={answer} key={answer.id} questionId={question.id} />
         ))}
       </AnswerContainer>
       <CheckButton onClick={validateAnswer} disabled={disabled} >Check Answer</CheckButton>
