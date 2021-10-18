@@ -13,7 +13,7 @@ function Question({ question, setCount }) {
 
     function validateAnswer() {
         validate(question.id).then(data => {
-            if (data === chosenAnswer.answerText) {
+            if (data.toString() === chosenAnswer.answerText) {
                 setBackgroundColor("lightgreen");
                 setCount();
                 alert("CORRECT!")

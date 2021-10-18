@@ -15,7 +15,7 @@ function Homepage({ questions }) {
 
   return (
     <QuestionsContainer>
-      <Counter questions={questions} count={count}/>
+        <Counter questions={questions} count={count}/>
       {questions.map(question => (
         <Question question={question} key={question.id} setCount={handleSetCount} />
       ))}
