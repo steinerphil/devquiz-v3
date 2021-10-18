@@ -2,24 +2,28 @@ import * as React from 'react'
 import Answer from './Answer'
 import styled from 'styled-components'
 import {useState} from "react";
+import { validate } from "../service/devQuizApiService";
 
 function Question({ question }) {
 
     const [chosenAnswer, setChosenAnswer] = useState({});
 
-    function validateAnswer() {
-        console.log(chosenAnswer.isCorrect)
-        if (chosenAnswer.isCorrect) {
-            alert("CORRECT!")
-        } else {
-            const correctAnswer = question.answers.find(answer => answer.isCorrect ? answer : "");
-            alert("WROONG! Correct answer would have been: " + correctAnswer.answerText)
+    const [backgroundColor, setBackgroundColor] = useState("white")
 
-             }
+    function validateAnswer() {
+        validate(question.id).then(data => {
+            if (data === chosenAnswer.answerText) {
+                alert("CORRECT!")
+                setBackgroundColor("lightgreen");
+            } else {
+                alert("WROONG! Correct answer would have been: " + data)
+                setBackgroundColor("red");
+            }
+        });
     }
 
     return (
-    <QuestionContainer>
+    <QuestionContainer backgroundColor={backgroundColor}>
       <h3>{question.questionText}</h3>
       <AnswerContainer>
         {question.answers.map(answer => (
@@ -37,7 +41,7 @@ const QuestionContainer = styled.section`
   border: 1px solid #009fb7;
   border-radius: 20px;
   padding: 20px;
-  background-color: #EAF6FF;
+  background-color: ${props => props.backgroundColor};
   font-family: 'Montserrat', sans-serif;;
 `
 

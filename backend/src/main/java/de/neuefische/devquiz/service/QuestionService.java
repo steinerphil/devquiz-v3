@@ -1,5 +1,6 @@
 package de.neuefische.devquiz.service;
 
+import de.neuefische.devquiz.model.Answer;
 import de.neuefische.devquiz.model.Question;
 import de.neuefische.devquiz.repo.QuestionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,4 +38,26 @@ public class QuestionService {
 
         return optionalQuestion.get();
     }
+
+    public String validateAnswer(String id) {
+        Optional<Question> answeredQuestionOptional = questionRepo.findById(id);
+        String correctAnswer = "";
+        if (answeredQuestionOptional.isPresent()) {
+            Question answeredQuestion = answeredQuestionOptional.get();
+            for (Answer answer : answeredQuestion.getAnswers()) {
+                if (answer.getIsCorrect()) {
+                    correctAnswer = answer.getAnswerText();
+                    return correctAnswer;
+                } else {
+                    throw new NoSuchElementException("no correct answer found I");
+                }
+            }
+        } else {
+            throw new NoSuchElementException("no correct answer found");
+        }
+        return correctAnswer;
+    }
+
+
+
 }

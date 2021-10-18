@@ -1,8 +1,10 @@
 import * as React from 'react'
 import Question from '../components/Question'
 import styled from 'styled-components'
+import {useState} from "react";
 
 function Homepage({ questions }) {
+
   return (
     <QuestionsContainer>
       {questions.map(question => (

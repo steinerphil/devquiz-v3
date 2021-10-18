@@ -24,9 +24,9 @@ public class QuestionController {
         return questionService.getAllQuestions();
     }
 
-    @GetMapping("/{id}")
-    public Question get(@PathVariable String id) {
-        return questionService.get(id);
+    @GetMapping("/validate/{id}")
+    public String get(@PathVariable String id) {
+        return questionService.validateAnswer(id);
     }
 
     @PostMapping()
