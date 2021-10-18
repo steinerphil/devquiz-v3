@@ -4,9 +4,10 @@ import styled from 'styled-components'
 import {useState} from "react";
 import { validate } from "../service/devQuizApiService";
 
-function Question({ question }) {
+function Question({ question, setCount }) {
 
     const [chosenAnswer, setChosenAnswer] = useState({});
+    const [disabled, setDisabled] = useState(false)
 
     const [backgroundColor, setBackgroundColor] = useState("white")
 
@@ -30,7 +31,7 @@ function Question({ question }) {
           <Answer setChosenAnswer={setChosenAnswer} answer={answer} key={answer.id} questionId={question.id} />
         ))}
       </AnswerContainer>
-      <CheckButton onClick={validateAnswer} >Check Answer</CheckButton>
+      <CheckButton onClick={validateAnswer} disabled={disabled}>Check Answer</CheckButton>
     </QuestionContainer>
   )
 }
@@ -68,7 +69,7 @@ const CheckButton = styled.button`
   padding: 6px 24px;
   text-decoration: none;
 
-  &:hover {
+  &:hover:enabled {
     background: linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
     background-color: #dfdfdf;
     color: #757780;
@@ -77,4 +78,10 @@ const CheckButton = styled.button`
     position: relative;
     top: 1px;
   }
+
+  &:disabled{
+    background-color: #cccccc;
+    color: #666666;
+  }
+
 `
