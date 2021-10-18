@@ -14,12 +14,14 @@ function Question({ question, setCount }) {
     function validateAnswer() {
         validate(question.id).then(data => {
             if (data === chosenAnswer.answerText) {
-                alert("CORRECT!")
                 setBackgroundColor("lightgreen");
+                setCount();
+                alert("CORRECT!")
             } else {
-                alert("WROONG! Correct answer would have been: " + data)
                 setBackgroundColor("red");
+                alert("WROONG! Correct answer would have been: " + data)
             }
+            setDisabled(true);
         });
     }
 
@@ -31,7 +33,7 @@ function Question({ question, setCount }) {
           <Answer setChosenAnswer={setChosenAnswer} answer={answer} key={answer.id} questionId={question.id} />
         ))}
       </AnswerContainer>
-      <CheckButton onClick={validateAnswer} disabled={disabled}>Check Answer</CheckButton>
+      <CheckButton onClick={validateAnswer} disabled={disabled} >Check Answer</CheckButton>
     </QuestionContainer>
   )
 }
