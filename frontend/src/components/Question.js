@@ -18,7 +18,7 @@ function Question({ question, setCount }) {
                 setCount();
                 alert("CORRECT!")
             } else {
-                setBackgroundColor("red");
+                setBackgroundColor("indianred");
                 alert("WROONG! Correct answer would have been: " + data)
             }
             setDisabled(true);
