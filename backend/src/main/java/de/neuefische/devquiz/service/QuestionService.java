@@ -48,8 +48,6 @@ public class QuestionService {
                 if (answer.getIsCorrect()) {
                     correctAnswer = answer.getAnswerText();
                     return correctAnswer;
-                } else {
-                    throw new NoSuchElementException("no correct answer found I");
                 }
             }
         } else {
