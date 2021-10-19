@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { useState } from 'react'
 import NewQuestion from '../components/NewQuestion'
 import { v4 as uuidv4 } from 'uuid';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function AddQuestion({ saveQuestion }) {
@@ -52,9 +54,21 @@ export default function AddQuestion({ saveQuestion }) {
     setQuestions({ ...question, questionText: e.target.value })
   }
 
+  const notifySuccess = () => toast.success("Successfully added.")
+
   return (
     <section>
       <Heading>Add Question Page</Heading>
+      <ToastContainer
+          autoClose={2000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+      />
       <FormContainer>
         <NewQuestion
           question={question}
@@ -69,6 +83,7 @@ export default function AddQuestion({ saveQuestion }) {
         <Button
           onClick={() => {
             saveQuestion(question)
+            notifySuccess()
           }}
         >
           Save Question
