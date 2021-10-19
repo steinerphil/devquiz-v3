@@ -1,6 +1,5 @@
 package de.neuefische.devquiz.security.service;
 
-import de.neuefische.devquiz.security.model.AppUser;
 import de.neuefische.devquiz.security.repo.AppUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -8,7 +7,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import java.util.Optional;
 
 @Service
 public class AppUserDetailService implements UserDetailsService {
