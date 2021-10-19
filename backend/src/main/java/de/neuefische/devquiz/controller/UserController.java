@@ -1,5 +1,6 @@
 package de.neuefische.devquiz.controller;
 
+import de.neuefische.devquiz.model.UserResponseDto;
 import de.neuefische.devquiz.security.service.AppUserDetailService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,13 +11,13 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping("api/user")
-public class LoggedInController {
+public class UserController {
 
-    private final AppUserDetailService appUserDetailService;
-
-    public LoggedInController(AppUserDetailService appUserDetailService) {
-        this.appUserDetailService = appUserDetailService;
-    }
+//    private final AppUserDetailService appUserDetailService;
+//
+//    public UserController(AppUserDetailService appUserDetailService) {
+//        this.appUserDetailService = appUserDetailService;
+//    }
 
 //    @GetMapping("me")
 //    public UserDetails getLoggedInUser(Principal principal){
@@ -27,9 +28,8 @@ public class LoggedInController {
 //    }
 
     @GetMapping("me")
-    public String getLoggedInUser(Principal principal){
-
-         return principal.getName();
+    public UserResponseDto getLoggedInUser(Principal principal){
+         return new UserResponseDto(principal.getName());
     }
 
 
