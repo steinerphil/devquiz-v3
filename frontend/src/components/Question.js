@@ -3,8 +3,30 @@ import Answer from './Answer'
 import styled from 'styled-components'
 import {useState} from "react";
 import { validate } from "../service/devQuizApiService";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Question({ question, setCount }) {
+
+    const notifyCorrect = () => toast.success('Correct!', {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
+
+    const notifyWrong = (data) => toast.error('Wrong, correct answer would have been: ' + data, {
+        position: "top-center",
+        autoClose: 4300,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
 
     const [chosenAnswer, setChosenAnswer] = useState({});
     const [disabled, setDisabled] = useState(false)
@@ -16,10 +38,10 @@ function Question({ question, setCount }) {
             if (data.toString() === chosenAnswer.answerText) {
                 setBackgroundColor("lightgreen");
                 setCount();
-                alert("CORRECT!")
+                notifyCorrect()
             } else {
                 setBackgroundColor("indianred");
-                alert("WROONG! Correct answer would have been: " + data)
+                notifyWrong(data)
             }
             setDisabled(true);
         });
@@ -28,6 +50,17 @@ function Question({ question, setCount }) {
     return (
     <QuestionContainer backgroundColor={backgroundColor}>
       <h3>{question.questionText}</h3>
+        <ToastContainer
+            position="top-center"
+            autoClose={2000}
+            hideProgressBar
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+        />
       <AnswerContainer>
         {question.answers.map(answer => (
           <Answer disabled={disabled} setChosenAnswer={setChosenAnswer} answer={answer} key={answer.id} questionId={question.id} />
