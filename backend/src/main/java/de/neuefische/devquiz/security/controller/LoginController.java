@@ -1,6 +1,7 @@
 package de.neuefische.devquiz.security.controller;
 
 import de.neuefische.devquiz.security.model.AppUser;
+import de.neuefische.devquiz.security.service.JWTUtilsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -9,24 +10,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+
 @RestController
 @RequestMapping("auth/login")
 public class LoginController {
 
     private final AuthenticationManager authenticationManager;
+    private JWTUtilsService jwtUtilsService;
 
     @Autowired
-    public LoginController(AuthenticationManager authenticationManager) {
+    public LoginController(AuthenticationManager authenticationManager, JWTUtilsService jwtUtilsService) {
         this.authenticationManager = authenticationManager;
+        this.jwtUtilsService = jwtUtilsService;
     }
 
     @PostMapping
     public String login(@RequestBody AppUser appUser){
 
-        this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(appUser.getUsername(), appUser.getPassword()));
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(appUser.getUsername(), appUser.getPassword()));
 
-        //TODO: create a real token
-        return "a valid JWT";
+        return jwtUtilsService.createToken(new HashMap<>(), appUser.getUsername());
     }
 
 }
