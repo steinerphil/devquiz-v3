@@ -17,7 +17,7 @@ import java.util.HashMap;
 public class LoginController {
 
     private final AuthenticationManager authenticationManager;
-    private JWTUtilsService jwtUtilsService;
+    private final JWTUtilsService jwtUtilsService;
 
     @Autowired
     public LoginController(AuthenticationManager authenticationManager, JWTUtilsService jwtUtilsService) {

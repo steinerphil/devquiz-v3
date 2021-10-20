@@ -39,7 +39,7 @@ class LoginControllerTest {
 
         //Given
         appUserRepo.save(AppUser.builder()
-                .username("user")
+                .username("test-user")
                 .password(passwordEncoder.encode("9999"))
                 .build());
 
@@ -64,12 +64,12 @@ class LoginControllerTest {
 
         //Given
         appUserRepo.save(AppUser.builder()
-                .username("user")
+                .username("test-user")
                 .password(passwordEncoder.encode("9999"))
                 .build());
 
         //When
-        AppUser appUser = new AppUser("user", "WRONG_TESTS");
+        AppUser appUser = new AppUser("user", "WRONG_TESTS1");
         ResponseEntity<String> response = testRestTemplate.postForEntity("/auth/login", appUser, String.class);
 
         //Then
