@@ -17,6 +17,4 @@ public class AppUser {
     @Id
     private String username;
     private String password;
-    private int securityCode;
-
 }
