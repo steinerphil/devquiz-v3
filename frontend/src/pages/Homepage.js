@@ -4,7 +4,7 @@ import Counter from "../components/Counter";
 import styled from 'styled-components'
 import {useState} from "react";
 
-function Homepage({ questions }) {
+function Homepage({ questions, token }) {
 
 
     const [count, setCount] = useState(0);
@@ -13,11 +13,14 @@ function Homepage({ questions }) {
         setCount(count + 1)
     }
 
+    console.log(questions)
+    console.log("questions")
+
   return (
     <QuestionsContainer>
         <Counter questions={questions} count={count}/>
       {questions.map(question => (
-        <Question question={question} key={question.id} setCount={handleSetCount} />
+        <Question question={question} key={question.id} setCount={handleSetCount} token={token}/>
       ))}
     </QuestionsContainer>
   )

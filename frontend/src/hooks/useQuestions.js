@@ -1,23 +1,26 @@
-import { addQuestion, getQuestions } from '../service/devQuizApiService'
+import {getQuestions, postQuestion, getValidate} from '../service/devQuizApiService'
 import { useEffect, useState } from 'react'
 
-export default function useQuestions() {
-  const [questions, setQuestions] = useState([])
 
-  const getAllQuestions = () => {
-    getQuestions().then(result => setQuestions(result))
-  }
+export default function useQuestions(token) {
+  const [questions, setQuestions] = useState([])
+  const [correctAnswer, setCorrectAnswer] = useState("")
 
   useEffect(() => {
-    getAllQuestions()
-  }, [])
+   getQuestions(token).then(questions => setQuestions(questions)).catch(err => console.error(err))
+  }, [token])
 
   const saveQuestion = newQuestion => {
-    addQuestion(newQuestion).then(getAllQuestions)
+    postQuestion(newQuestion, token).then(data => console.log(data))
   }
+
+  const validateAnswer = (questionId) => {
+   return getValidate(questionId, token).then(response=> response.data)
+  }
+
   return {
-    getAllQuestions,
     saveQuestion,
     questions,
+    validateAnswer,
   }
 }
