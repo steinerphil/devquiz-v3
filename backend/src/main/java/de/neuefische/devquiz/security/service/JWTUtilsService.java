@@ -16,13 +16,18 @@ public class JWTUtilsService {
     @Value("${neuefische.devquiz.jwt.secret}")
     private String JWT_SECRET;
 
+    public long createDuration(){
+        return 4 * 60 * 60 * 1000;
+    }
+
     public String createToken(HashMap<String, Object> claims, String subject) {
+
         //genereate JWT
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(subject) //username
                 .setIssuedAt(Date.from(Instant.now()))
-                .setExpiration(Date.from(Instant.now().plus(Duration.ofHours(4))))
+                .setExpiration(Date.from(Instant.now().plus(Duration.ofMillis(createDuration()))))
                 .signWith(SignatureAlgorithm.HS256, JWT_SECRET)
                 .compact();
     }
