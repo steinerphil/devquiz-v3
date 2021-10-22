@@ -6,7 +6,9 @@ import useQuestions from '../hooks/useQuestions'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function Question({ question, setCount, token }) {
+function Question({ question, setCount }) {
+
+
 
     const notifyCorrect = () => toast.success('Correct!', {
         position: "top-center",
@@ -31,7 +33,7 @@ function Question({ question, setCount, token }) {
     const [chosenAnswer, setChosenAnswer] = useState({});
     const [disabled, setDisabled] = useState(false)
     const [backgroundColor, setBackgroundColor] = useState("white")
-    const { validateAnswer, } = useQuestions(token);
+    const { validateAnswer, } = useQuestions();
 
     function validateUserAnswer() {
         validateAnswer(question.id).then(data => {
