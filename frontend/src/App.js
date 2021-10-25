@@ -6,6 +6,7 @@ import AddQuestion from './pages/Add-Question'
 import LoginPage from './pages/LoginPage'
 import useQuestions from './hooks/useQuestions'
 import AuthProvider from './context/AuthProvider'
+import PrivateRoute from "./routing/PrivateRoute";
 
 function App() {
 
@@ -19,12 +20,12 @@ function App() {
                     <Route exact path="/login">
                         <LoginPage/>
                     </Route>
-                    <Route exact path="/">
+                    <PrivateRoute exact path="/">
                         <Homepage questions={questions}/>
-                    </Route>
-                    <Route exact path="/add-question">
+                    </PrivateRoute>
+                    <PrivateRoute exact path="/add-question">
                         <AddQuestion saveQuestion={saveQuestion}/>
-                    </Route>
+                    </PrivateRoute>
 
                 </Switch>
             </div>

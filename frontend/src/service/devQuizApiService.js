@@ -29,3 +29,9 @@ export function postQuestion(newQuestion, token) {
     .then(response => response.data)
     .catch(console.error)
 }
+
+export function postLogin(credentials) {
+
+    return axios
+        .post('auth/login', credentials)
+}

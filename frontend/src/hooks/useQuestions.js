@@ -7,12 +7,16 @@ export default function useQuestions() {
   const [questions, setQuestions] = useState([])
   const { token } = useContext(AuthContext)
 
+  const getAllQuestions = () => {
+    getQuestions(token).then(questions => setQuestions(questions)).catch(err => console.error(err))
+  }
+
   useEffect(() => {
-   getQuestions(token).then(questions => setQuestions(questions)).catch(err => console.error(err))
+   getAllQuestions()
   }, [token])
 
   const saveQuestion = newQuestion => {
-    postQuestion(newQuestion, token).then(data => console.log(data))
+    postQuestion(newQuestion, token).then(getAllQuestions)
   }
 
   const validateAnswer = (questionId) => {
@@ -20,9 +24,9 @@ export default function useQuestions() {
   }
 
   return {
+    getAllQuestions,
     saveQuestion,
     questions,
     validateAnswer,
-    token
   }
 }
