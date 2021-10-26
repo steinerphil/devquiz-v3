@@ -35,3 +35,5 @@ export function postLogin(credentials) {
     return axios
         .post('auth/login', credentials)
 }
+
+export function postGithubCode()

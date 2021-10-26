@@ -7,9 +7,9 @@ import lombok.Data;
 public class CodeToAccessToken {
 
     @JsonProperty("client_id")
-    private final String clientId;
+    private final String client_id;
     @JsonProperty("client_secret")
-    private final String clientSecret;
+    private final String client_Secret;
     @JsonProperty
     private final String code;
 
