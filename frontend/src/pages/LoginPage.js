@@ -1,5 +1,6 @@
 import {useState, useContext} from "react";
 import { AuthContext } from '../context/AuthProvider'
+import GithubButton from 'react-github-login-button'
 
 const initialState = {
     username: '',
@@ -31,8 +32,10 @@ export default function LoginPage() {
 
                 <button type="submit">Login</button>
             </div>
+                <GithubButton
+                    onClick={ () => window.open("https://github.com/login/oauth/authorize?client_id=be41cda045d6d9ff7970")}
+                />
             </form>
-
         </>
     )
 
