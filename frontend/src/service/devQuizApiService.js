@@ -16,7 +16,7 @@ export function getQuestions(token) {
       questionArray.forEach(question => question.answers.map(answer => delete answer.isCorrect))
       return questionArray;
     })
-    .catch(err => console.error(err))
+    // .catch(err => console.error(err))
 }
 
 export function getValidate(questionId, token){
@@ -36,4 +36,9 @@ export function postLogin(credentials) {
         .post('auth/login', credentials)
 }
 
-export function postGithubCode()
+export function postGithubLogin(code) {
+    console.log(code)
+    console.log("postGithub")
+    return axios
+        .post('auth/github', code)
+}

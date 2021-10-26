@@ -13,13 +13,10 @@ function Homepage({ questions, }) {
         setCount(count + 1)
     }
 
-    console.log(questions)
-    console.log("questions")
-
   return (
     <QuestionsContainer>
         <Counter questions={questions} count={count}/>
-      {questions.map(question => (
+      {questions?.map(question => (
         <Question question={question} key={question.id} setCount={handleSetCount}/>
       ))}
     </QuestionsContainer>

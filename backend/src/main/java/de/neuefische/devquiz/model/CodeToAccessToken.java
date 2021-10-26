@@ -9,7 +9,7 @@ public class CodeToAccessToken {
     @JsonProperty("client_id")
     private final String client_id;
     @JsonProperty("client_secret")
-    private final String client_Secret;
+    private final String client_secret;
     @JsonProperty
     private final String code;
 
