@@ -1,7 +1,7 @@
 import {useContext, useEffect} from "react";
 import {AuthContext} from "../context/AuthProvider";
 
-export default function ({code}) {
+export default function Auth ({code}) {
 
     const { token, loginWithGithub } = useContext(AuthContext)
 
