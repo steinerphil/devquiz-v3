@@ -22,7 +22,7 @@ public class JWTUtilsService {
 
     public String createToken(HashMap<String, Object> claims, String subject) {
 
-        //genereate JWT
+        //generate JWT
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(subject) //username

@@ -2,11 +2,13 @@ import * as React from 'react'
 import Answer from './Answer'
 import styled from 'styled-components'
 import {useState} from "react";
-import { validate } from "../service/devQuizApiService";
+import useQuestions from '../hooks/useQuestions'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Question({ question, setCount }) {
+
+
 
     const notifyCorrect = () => toast.success('Correct!', {
         position: "top-center",
@@ -30,11 +32,11 @@ function Question({ question, setCount }) {
 
     const [chosenAnswer, setChosenAnswer] = useState({});
     const [disabled, setDisabled] = useState(false)
-
     const [backgroundColor, setBackgroundColor] = useState("white")
+    const { validateAnswer, } = useQuestions();
 
-    function validateAnswer() {
-        validate(question.id).then(data => {
+    function validateUserAnswer() {
+        validateAnswer(question.id).then(data => {
             if (data.toString() === chosenAnswer.answerText) {
                 setBackgroundColor("lightgreen");
                 setCount();
@@ -66,7 +68,7 @@ function Question({ question, setCount }) {
           <Answer disabled={disabled} setChosenAnswer={setChosenAnswer} answer={answer} key={answer.id} questionId={question.id} />
         ))}
       </AnswerContainer>
-      <CheckButton onClick={validateAnswer} disabled={disabled} >Check Answer</CheckButton>
+      <CheckButton onClick={validateUserAnswer} disabled={disabled} >Check Answer</CheckButton>
     </QuestionContainer>
   )
 }
